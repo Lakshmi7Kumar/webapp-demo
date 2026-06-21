@@ -1,0 +1,17 @@
+function runCode() {
+    const htmlCode = document.getElementById("html-code").value;
+    const cssCode = document.getElementById("css-code").value;
+    const jsCode = document.getElementById("js-code").value;
+    const output = document.getElementById("output-view");
+
+    // Combine code into a unified layout structure
+    output.contentDocument.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
+    
+    // Execute JavaScript safely within the frame window context
+    output.contentWindow.eval(jsCode);
+}
+
+// Attach event listeners to update the preview on every keystroke
+document.getElementById("html-code").addEventListener("keyup", runCode);
+document.getElementById("css-code").addEventListener("keyup", runCode);
+document.getElementById("js-code").addEventListener("keyup", runCode);
